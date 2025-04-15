@@ -6,6 +6,7 @@ import dev.Zerphyis.ClenArch.infra.persistance.LivroEntity;
 import dev.Zerphyis.ClenArch.infra.persistance.LivrosRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class RepositorioLivrosJpa implements RepositorioDeLivros {
@@ -30,4 +31,19 @@ public class RepositorioLivrosJpa implements RepositorioDeLivros {
                 .map(mapper::toDomain)
                 .collect(Collectors.toList());
     }
+    @Override
+    public Livros atualizarLivro(String titulo, Livros livroAtualizado) {
+        Optional<LivroEntity> optionalEntity = repositorio.findByTitulo(titulo);
+        if (optionalEntity.isPresent()) {
+            LivroEntity entity = optionalEntity.get();
+            entity.setTitulo(livroAtualizado.getTitulo());
+            entity.setAutor(livroAtualizado.getAutor());
+            entity.setAnoPublicacao(livroAtualizado.getAnoPublicacao());
+            repositorio.save(entity);
+            return mapper.toDomain(entity);
+        }
+        return null;
+    }
+
+
 }
