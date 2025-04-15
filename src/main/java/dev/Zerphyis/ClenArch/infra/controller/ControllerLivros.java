@@ -1,5 +1,6 @@
 package dev.Zerphyis.ClenArch.infra.controller;
 
+import dev.Zerphyis.ClenArch.application.gateways.RepositorioDeLivros;
 import dev.Zerphyis.ClenArch.application.usecases.AtualizarLivros;
 import dev.Zerphyis.ClenArch.application.usecases.CriarLivros;
 import dev.Zerphyis.ClenArch.application.usecases.DeletarLivros;
@@ -21,12 +22,14 @@ public class ControllerLivros {
     private final ListarLivros listarLivros;
     private final AtualizarLivros atualizarLivros;
     private final DeletarLivros deletarLivros;
+    private final RepositorioDeLivros repositorioDeLivros;
 
-    public ControllerLivros(CriarLivros criarLivros, ListarLivros listarLivros, AtualizarLivros atualizarLivros,DeletarLivros deletarLivros) {
+    public ControllerLivros(CriarLivros criarLivros, ListarLivros listarLivros, AtualizarLivros atualizarLivros,DeletarLivros deletarLivros,  RepositorioDeLivros repositorioDeLivros) {
         this.criarLivros = criarLivros;
         this.listarLivros = listarLivros;
         this.atualizarLivros=atualizarLivros;
         this.deletarLivros=deletarLivros;
+        this.repositorioDeLivros=repositorioDeLivros;
     }
 
     @PostMapping
