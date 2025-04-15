@@ -51,4 +51,8 @@ public class RepositorioDeLivrosArquivos implements RepositorioDeLivros {
         }
 
     }
+
+    public boolean deletarLivro(String titulo) {
+        return livros.removeIf(livro -> livro.getTitulo().equals(titulo));
+    }
 }
