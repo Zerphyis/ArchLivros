@@ -8,4 +8,9 @@ public interface RepositorioDeLivros {
     Livros cadastrarLivros(Livros livros);
 
     List<Livros> listarTodos();
+
+    public Livros atualizarLivro(String titulo, Livros livroAtualizado);
+
+
+
 }
