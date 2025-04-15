@@ -45,5 +45,14 @@ public class RepositorioLivrosJpa implements RepositorioDeLivros {
         return null;
     }
 
+    @Override
+    public boolean deletarLivro(String titulo) {
+        Optional<LivroEntity> optionalEntity = repositorio.findByTitulo(titulo);
+        if (optionalEntity.isPresent()) {
+            repositorio.delete(optionalEntity.get());
+            return true;
+        }
+        return false;
+    }
 
 }

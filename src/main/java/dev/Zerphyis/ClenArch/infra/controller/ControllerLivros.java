@@ -2,11 +2,13 @@ package dev.Zerphyis.ClenArch.infra.controller;
 
 import dev.Zerphyis.ClenArch.application.usecases.AtualizarLivros;
 import dev.Zerphyis.ClenArch.application.usecases.CriarLivros;
+import dev.Zerphyis.ClenArch.application.usecases.DeletarLivros;
 import dev.Zerphyis.ClenArch.application.usecases.ListarLivros;
 import dev.Zerphyis.ClenArch.domain.entitiys.livros.Livros;
 import dev.Zerphyis.ClenArch.domain.entitiys.records.LivrosDto;
 import dev.Zerphyis.ClenArch.domain.entitiys.records.LivrosDtoResponse;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -18,11 +20,13 @@ public class ControllerLivros {
     private final CriarLivros criarLivros;
     private final ListarLivros listarLivros;
     private final AtualizarLivros atualizarLivros;
+    private final DeletarLivros deletarLivros;
 
-    public ControllerLivros(CriarLivros criarLivros, ListarLivros listarLivros, AtualizarLivros atualizarLivros) {
+    public ControllerLivros(CriarLivros criarLivros, ListarLivros listarLivros, AtualizarLivros atualizarLivros,DeletarLivros deletarLivros) {
         this.criarLivros = criarLivros;
         this.listarLivros = listarLivros;
         this.atualizarLivros=atualizarLivros;
+        this.deletarLivros=deletarLivros;
     }
 
     @PostMapping
@@ -48,5 +52,13 @@ public class ControllerLivros {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Livro não encontrado");
         }
         return new LivrosDtoResponse(livro.getTitulo(), livro.getAutor(), livro.getAnoPublicacao(), livro.getEditora());
+    }
+    @DeleteMapping("/{titulo}")
+    public ResponseEntity<Void> deletarLivro(@PathVariable String titulo) {
+        boolean deletado =deletarLivros.deletarLivro(titulo);
+        if (!deletado) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Livro não encontrado");
+        }
+        return ResponseEntity.noContent().build();
     }
 }
