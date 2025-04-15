@@ -22,6 +22,20 @@ public class RepositorioDeLivrosArquivos implements RepositorioDeLivros {
         return this.livros;
     }
 
+
+
+    public Livros atualizarLivro(String titulo, Livros livroAtualizado) {
+        for (Livros livro : livros) {
+            if (livro.getTitulo().equals(titulo)) {
+                livro.setTitulo(livroAtualizado.getTitulo());
+                livro.setAutor(livroAtualizado.getAutor());
+                livro.setAnoPublicacao(livroAtualizado.getAnoPublicacao());
+                return livro;
+            }
+        }
+        return null;
+    }
+
     public void gravaEmArquivo(String nomeArquivo) {
         FileWriter fileWriter = null;
         try {
