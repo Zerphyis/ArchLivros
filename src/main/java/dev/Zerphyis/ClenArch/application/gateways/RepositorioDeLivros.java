@@ -12,5 +12,5 @@ public interface RepositorioDeLivros {
     public Livros atualizarLivro(String titulo, Livros livroAtualizado);
 
 
-
+    public boolean deletarLivro(String titulo) ;
 }
