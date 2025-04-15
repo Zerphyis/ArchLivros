@@ -3,6 +3,7 @@ package dev.Zerphyis.ClenArch.config;
 import dev.Zerphyis.ClenArch.application.gateways.RepositorioDeLivros;
 import dev.Zerphyis.ClenArch.application.usecases.AtualizarLivros;
 import dev.Zerphyis.ClenArch.application.usecases.CriarLivros;
+import dev.Zerphyis.ClenArch.application.usecases.DeletarLivros;
 import dev.Zerphyis.ClenArch.application.usecases.ListarLivros;
 import dev.Zerphyis.ClenArch.infra.gateways.LivrosEntityMapper;
 import dev.Zerphyis.ClenArch.infra.gateways.RepositorioLivrosJpa;
@@ -25,6 +26,10 @@ public class LivroConfig {
     @Bean
     AtualizarLivros atualizarLivros(RepositorioDeLivros repositorioDeLivros) {
         return new AtualizarLivros(repositorioDeLivros);
+    }
+    @Bean
+    DeletarLivros deletarLivros(RepositorioDeLivros repositorioDeLivros) {
+        return new DeletarLivros(repositorioDeLivros);
     }
 
     @Bean
