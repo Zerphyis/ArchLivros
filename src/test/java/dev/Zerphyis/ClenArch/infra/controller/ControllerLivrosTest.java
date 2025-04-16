@@ -1,6 +1,6 @@
 package dev.Zerphyis.ClenArch.infra.controller;
 
-
+import dev.Zerphyis.ClenArch.application.usecases.AtualizarLivros;
 import dev.Zerphyis.ClenArch.application.usecases.CriarLivros;
 
 import dev.Zerphyis.ClenArch.application.usecases.ListarLivros;
@@ -20,7 +20,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -30,6 +30,9 @@ class ControllerLivrosTest {
 
     @Mock
     private ListarLivros listarLivros;
+
+    @Mock
+    private AtualizarLivros atualizarLivros;
 
 
 
@@ -63,6 +66,15 @@ class ControllerLivrosTest {
         assertFalse(response.isEmpty());
         assertEquals(1, response.size());
         assertEquals("O Senhor dos Anéis", response.get(0).titulo());
+    }
+
+    @Test
+    void deveAtualizarLivroComSucesso() {
+        when(atualizarLivros.atualizarLivro(anyString(), any(Livros.class))).thenReturn(livro);
+        LivrosDtoResponse response = controller.atualizarLivro("O Senhor dos Anéis", livroDto);
+
+        assertNotNull(response);
+        assertEquals("O Senhor dos Anéis", response.titulo());
     }
 
 
