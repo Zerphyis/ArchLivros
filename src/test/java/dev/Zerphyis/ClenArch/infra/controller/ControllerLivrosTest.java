@@ -14,6 +14,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collections;
 import java.util.List;
@@ -77,5 +78,13 @@ class ControllerLivrosTest {
         assertEquals("O Senhor dos Anéis", response.titulo());
     }
 
+    @Test
+    void deveLancarErroAoAtualizarLivroInexistente() {
+        when(atualizarLivros.atualizarLivro(anyString(), any(Livros.class))).thenReturn(null);
+
+        assertThrows(ResponseStatusException.class, () -> {
+            controller.atualizarLivro("Livro Inexistente", livroDto);
+        });
+    }
 
 }
