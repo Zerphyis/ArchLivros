@@ -82,3 +82,23 @@ Deleta um livro com base no título.
 ![Image](https://github.com/user-attachments/assets/5ae7293d-caf0-4e1e-abd8-3a9a6b49c008)
 <br>
 
+### 🧪 Testes
+
+O projeto inclui testes unitários utilizando JUnit e Mockito para garantir o bom funcionamento dos seguintes casos:
+
+Cadastro de livros
+
+Listagem de livros
+
+Atualização de livros
+
+Deleção de livros
+
+Tratamento de erros ao atualizar/deletar livros inexistentes
+
+
+### 📜 Certificado
+
+Este projeto foi desenvolvido com base no curso Arquitetura Java: descomplicando a Clean Architecture da Alura, no qual obtive certificação.
+
+
