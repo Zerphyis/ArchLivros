@@ -97,6 +97,13 @@ class ControllerLivrosTest {
         assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
     }
 
+    @Test
+    void deveLancarErroAoDeletarLivroInexistente() {
+        when(deletarLivros.deletarLivro(anyString())).thenReturn(false);
 
+        assertThrows(ResponseStatusException.class, () -> {
+            controller.deletarLivro("Livro Inexistente");
+        });
+    }
 
 }
