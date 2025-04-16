@@ -64,6 +64,21 @@ Retorna todos os livros cadastrados no sistema.
 ![Image](https://github.com/user-attachments/assets/259d9407-717f-4991-bbc8-b31c46aabaac)
 <br>
 
+### 🔹 Atualização de Livros
 
+Atualiza os dados de um livro com base no título.
 
+<br>
+
+![Image](https://github.com/user-attachments/assets/8fe956d0-75f2-482e-b3e6-c05cbbc87d95)
+<br>
+
+### 🔹 Deleção de Livros
+
+Deleta um livro com base no título.
+
+<br>
+
+![Image](https://github.com/user-attachments/assets/5ae7293d-caf0-4e1e-abd8-3a9a6b49c008)
+<br>
 
