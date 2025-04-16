@@ -2,7 +2,7 @@ package dev.Zerphyis.ClenArch.infra.controller;
 
 import dev.Zerphyis.ClenArch.application.usecases.AtualizarLivros;
 import dev.Zerphyis.ClenArch.application.usecases.CriarLivros;
-
+import dev.Zerphyis.ClenArch.application.usecases.DeletarLivros;
 import dev.Zerphyis.ClenArch.application.usecases.ListarLivros;
 import dev.Zerphyis.ClenArch.domain.entitiys.livros.Livros;
 import dev.Zerphyis.ClenArch.domain.entitiys.records.LivrosDto;
@@ -13,7 +13,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collections;
@@ -35,7 +36,8 @@ class ControllerLivrosTest {
     @Mock
     private AtualizarLivros atualizarLivros;
 
-
+    @Mock
+    private DeletarLivros deletarLivros;
 
     @InjectMocks
     private ControllerLivros controller;
@@ -86,5 +88,15 @@ class ControllerLivrosTest {
             controller.atualizarLivro("Livro Inexistente", livroDto);
         });
     }
+
+    @Test
+    void deveDeletarLivroComSucesso() {
+        when(deletarLivros.deletarLivro(anyString())).thenReturn(true);
+        ResponseEntity<Void> response = controller.deletarLivro("O Senhor dos Anéis");
+
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
+    }
+
+
 
 }
