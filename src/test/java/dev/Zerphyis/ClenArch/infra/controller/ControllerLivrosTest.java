@@ -1,7 +1,9 @@
 package dev.Zerphyis.ClenArch.infra.controller;
 
+
 import dev.Zerphyis.ClenArch.application.usecases.CriarLivros;
 
+import dev.Zerphyis.ClenArch.application.usecases.ListarLivros;
 import dev.Zerphyis.ClenArch.domain.entitiys.livros.Livros;
 import dev.Zerphyis.ClenArch.domain.entitiys.records.LivrosDto;
 import dev.Zerphyis.ClenArch.domain.entitiys.records.LivrosDtoResponse;
@@ -13,14 +15,22 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 
+import java.util.Collections;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class ControllerLivrosTest {
     @Mock
     private CriarLivros criarLivros;
+
+    @Mock
+    private ListarLivros listarLivros;
+
 
 
     @InjectMocks
@@ -43,6 +53,16 @@ class ControllerLivrosTest {
         assertNotNull(response);
         assertEquals("O Senhor dos Anéis", response.titulo());
         assertEquals("J.R.R. Tolkien", response.autor());
+    }
+
+    @Test
+    void deveListarLivrosComSucesso() {
+        when(listarLivros.bucarTodosLivros()).thenReturn(Collections.singletonList(livro));
+        List<LivrosDtoResponse> response = controller.listarUsuarios();
+
+        assertFalse(response.isEmpty());
+        assertEquals(1, response.size());
+        assertEquals("O Senhor dos Anéis", response.get(0).titulo());
     }
 
 
