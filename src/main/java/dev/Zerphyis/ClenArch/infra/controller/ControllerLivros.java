@@ -36,14 +36,14 @@ public class ControllerLivros {
     public LivrosDtoResponse cadastrarUsuario(@RequestBody LivrosDto dto) {
         Livros salvo = criarLivros.cadastraLivros(new Livros(dto.autor(), dto.titulo(), dto.anoPublicacao()));
 
-        return new LivrosDtoResponse(salvo.getTitulo(), salvo.getAutor(), salvo.getAnoPublicacao(), salvo.getEditora());
+        return new LivrosDtoResponse(salvo.getTitulo(), salvo.getAutor(), salvo.getAnoPublicacao());
 
     }
 
     @GetMapping
     public List<LivrosDtoResponse> listarUsuarios() {
         return listarLivros.bucarTodosLivros().stream()
-                .map(u -> new LivrosDtoResponse(u.getTitulo(), u.getAutor(), u.getAnoPublicacao(), u.getEditora()))
+                .map(u -> new LivrosDtoResponse(u.getTitulo(), u.getAutor(), u.getAnoPublicacao()))
                 .collect(Collectors.toList());
     }
 
@@ -54,7 +54,7 @@ public class ControllerLivros {
         if (livro == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Livro não encontrado");
         }
-        return new LivrosDtoResponse(livro.getTitulo(), livro.getAutor(), livro.getAnoPublicacao(), livro.getEditora());
+        return new LivrosDtoResponse(livro.getTitulo(), livro.getAutor(), livro.getAnoPublicacao());
     }
     @DeleteMapping("/{titulo}")
     public ResponseEntity<Void> deletarLivro(@PathVariable String titulo) {
