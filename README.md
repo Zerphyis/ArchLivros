@@ -55,3 +55,15 @@ Permite cadastrar novos livros fornecendo:
 ![Image](https://github.com/user-attachments/assets/095fd457-94d1-4d99-bb1f-bba566a0bcc2)
 <br>
 
+### 🔹 Listagem de Livros
+
+Retorna todos os livros cadastrados no sistema.
+
+<br>
+
+![Image](https://github.com/user-attachments/assets/259d9407-717f-4991-bbc8-b31c46aabaac)
+<br>
+
+
+
+
